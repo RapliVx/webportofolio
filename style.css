@@ -461,130 +461,70 @@ video.bg-video{
     opacity: .9;
 }
 
-/* ========= MOBILE ONLY (≤ 480px) ========= */
+/* ===== MOBILE BOX BLUR FULL CENTER (≤ 480px) ===== */
 @media (max-width: 480px) {
 
-    /* HERO CARD */
+    /* HERO BLUR BOX */
     .hero .content {
-        width: 90%;
-        padding: 24px 18px;
+        width: 95%;                 /* hampir full screen */
+        min-height: 65vh;           /* box besar sampai tengah */
+        padding: 30px 24px;         /* padding agak besar */
+
         margin: 0 auto;
-        border-radius: 28px;
         text-align: center;
-        backdrop-filter: blur(20px);
+
+        background: rgba(255,255,255,0.22);
+        backdrop-filter: blur(22px);        /* blur jauh lebih besar */
+        -webkit-backdrop-filter: blur(22px);
+
+        border-radius: 35px;        /* curve besar */
+        box-shadow: 0 8px 35px rgba(0,0,0,0.15);
     }
 
-    /* PROFILE PICTURE */
+    /* PROFILE PIC */
     .profile-picture {
-        width: 80px;
-        height: 80px;
+        width: 95px;
+        height: 95px;
+        margin-bottom: 20px;
         border-width: 3px;
-        margin-bottom: 15px;
     }
 
-    /* HERO TITLES */
+    /* TEXT SCALE */
     .hero h1 {
-        font-size: 24px;
-        line-height: 1.2;
+        font-size: 28px;
+        line-height: 1.25;
     }
 
     .hero p {
-        font-size: 14px;
-        line-height: 1.4;
-        opacity: .9;
-        margin-top: 4px;
-    }
-
-    /* ABOUT ME TITLE */
-    .hero h3 {
-        font-size: 18px;
-        margin-top: 22px;
-    }
-
-    /* ABOUT TEXT */
-    .hero .about-text {
-        font-size: 14px;
+        font-size: 15px;
         line-height: 1.45;
+        opacity: 0.9;
+        margin-top: 6px;
+    }
+
+    /* "About me" text */
+    .hero h3 {
+        font-size: 20px;
+        margin-top: 25px;
+    }
+
+    .hero .about-text {
+        font-size: 15px;
+        line-height: 1.45;
+        margin-top: 10px;
     }
 
     /* SCROLL BUTTON */
     .more-btn {
-        width: 55px;
-        height: 55px;
-        bottom: 55px;
+        bottom: 40px;
         background: rgba(255,255,255,0.25);
-        backdrop-filter: blur(10px);
-    }
-
-    .more-btn:hover {
-        transform: translateX(-50%) scale(1.06);
+        backdrop-filter: blur(14px);
+        width: 60px;
+        height: 60px;
     }
 
     .more-btn .icon-down {
-        width: 22px;
-        height: 22px;
-        transform: translateY(-2px);
-    }
-
-    /* CONTACT ME */
-    #contactme {
-        padding: 40px 25px;
-        border-radius: 28px;
-        width: 90%;
-        margin: 0 auto;
-    }
-
-    #contactme h2 {
-        font-size: 26px;
-    }
-
-    #contactme p {
-        font-size: 14px;
-        line-height: 1.45;
-        word-break: break-word;
-        text-align: center;
-    }
-
-    #contactme ul {
-        flex-direction: row;
-        gap: 12px;
-        padding: 0;
-        justify-content: center;
-    }
-
-    #contactme ul li a {
-        font-size: 14px;
-    }
-
-    /* PROJECT SECTION */
-    .project-item {
-        width: 90%;
-        padding: 18px 20px;
-        font-size: 15px;
-    }
-
-    .project-title {
-        font-size: 18px;
-        padding: 12px 20px;
-        text-align: center;
-    }
-
-    .project-details {
-        font-size: 14px;
-        padding: 12px 10px;
-        line-height: 1.45;
-    }
-
-    /* GALLERY */
-    .gallery h2 {
-        font-size: 28px;
-        padding: 10px 24px;
-        letter-spacing: 1.5px;
-    }
-
-    /* BACKGROUND ADJUST */
-    body {
-        background-size: cover;
-        background-position: center;
+        width: 26px;
+        height: 26px;
     }
 }
