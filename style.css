@@ -1,0 +1,462 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background: #000;
+    overflow-x: hidden;
+    cursor: none !important;
+}
+
+a:hover, button:hover, [role="button"]:hover, input:hover, textarea:hover {
+    cursor: none !important;
+}
+
+/* Animated GIF cursor */
+.cursor-gif {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+
+    background: url('image/curcyrene.gif') no-repeat center / contain;
+    
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+
+    /* smooth follow */
+    transition: transform .05s linear;
+}
+
+/* LIVE WALLPAPER */
+.hero{
+    position: relative;
+    height: 100vh;
+}
+
+.hero::after{
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 230px;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0) 25%,
+        rgba(199,169,255,0.55) 70%,
+        #ffffff 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+video.bg-video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(55%);
+    z-index: -1;
+}
+
+/* FLOATING INFO BOX */
+.info-box{
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    width: 45%;
+    padding: 30px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(18px);
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 5px 45px rgba(0,0,0,0.5);
+    color: #fff;
+    z-index: 2;
+}
+
+#home{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+}
+
+#home img{
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.4);
+}
+
+#aboutme{
+    margin-top: 25px;
+}
+
+#aboutme p{
+    opacity: 0.9;
+    margin: 5px 0;
+}
+
+/* BUTTON (updated) */
+.more-btn{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    border: none;
+    backdrop-filter: blur(8px);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 85px;
+
+    cursor: pointer;
+    transition: .3s;
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.more-btn:hover{
+    transform: translateX(-50%) scale(1.15);
+}
+
+/* ICON inside the button */
+.more-btn .icon-down{
+    width: 24px;
+    height: 24px;
+    opacity: 0.9;
+    pointer-events: none;
+
+    transform: translateY(-3px);
+}
+
+
+/* PROJECT SECTION */
+.projects{
+    background: #fff;
+    padding: 100px 60px;
+    min-height: 100vh;
+    color: #000;
+    position: relative;
+    margin-top: -40px;
+    z-index: 0;
+    text-align: center;
+}
+
+/* LIST POSITIONING */
+.project-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+/* PROJECT CARD (lebih besar & menyatu) */
+.project-item {
+    width: 90%;
+    max-width: 800px;
+    background: #ffffff;
+    padding: 0;
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+    overflow: hidden;
+    transition: transform .2s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-3px);
+}
+
+/* TITLE */
+.project-title {
+    width: 100%;
+    padding: 22px 25px;
+    background: #f3f3f3;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Project section title (same style as gallery) */
+.projects h2 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+
+    padding: 12px 40px;
+    display: inline-block;
+
+    /* Blur glass like slider button */
+    background: rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 50px; /* pill shape */
+    color: #000;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    transition: .25s ease;
+}
+
+.projects h2:hover {
+    transform: scale(1.07);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+
+
+/* CONTENT WITH SMOOTH SLIDE */
+.project-content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 25px;
+    background: #f3f3f3;
+    transition: max-height 0.45s ease, padding 0.3s ease;
+}
+
+.project-content p {
+    padding: 18px 0 25px 0;
+    margin: 0;
+}
+
+/* ACTIVE CLASS WHEN OPEN */
+.project-content.open {
+    padding: 18px 25px 25px 25px;
+    max-height: 300px;
+}
+
+
+/* SHAPES KIRI & KANAN */
+.corner-shape-left,
+.corner-shape-right{
+    position: absolute;
+    top: -40px;
+    width: 50%;
+    height: 90px;
+    background: #ffffff;
+    z-index: -1;
+}
+
+.corner-shape-left{
+    left: 0;
+    border-radius: 40px 0 0 0;
+}
+
+.corner-shape-right{
+    right: 0;
+    border-radius: 0 40px 0 0;
+}
+
+.project-list{
+    font-size: 18px;
+    line-height: 1.8;
+    margin-top: 10px;
+    padding-left: 25px;
+}
+
+.project-list li{
+    margin-bottom: 8px;
+}
+
+
+/* Gallery section */
+.gallery {
+    width: 100%;
+    min-height: 600px;
+    background: #ffffff;
+    position: relative;
+    padding: 80px 0 60px;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Gallery title blur aesthetic */
+.gallery h2 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+
+    padding: 12px 40px;
+    display: inline-block;
+
+    /* Blur glass like slider button */
+    background: rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 50px; /* pill shape */
+    color: #000;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    transition: .25s ease;
+}
+
+.gallery h2:hover {
+    transform: scale(1.07);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+
+/* Slider container */
+.slider-container {
+    position: relative;
+    width: 70%;
+    height: 450px;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Only show one image at a time */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity .5s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* Glassmorphism Arrow Buttons */
+.slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 14px;
+    border-radius: 15px;
+    box-shadow: 0 4px 28px rgba(0,0,0,0.25);
+    cursor: pointer;
+    z-index: 99;
+    transition: all .25s ease-in-out;
+}
+
+.slide-btn img {
+    width: 45px;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* CONTACT SECTION */
+.contact-section {
+    width: 100%;
+    background: #ffffff;
+    padding: 90px 0;
+    text-align: center;
+}
+
+/* Contact title like gallery/project title */
+.contact-section h2 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+
+    padding: 12px 40px;
+    display: inline-block;
+
+    background: rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 50px;
+    color: #000;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    transition: .25s ease;
+}
+
+.contact-section h2:hover {
+    transform: scale(1.07);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+
+/* BIGGER CONTACT BOX */
+.contact-box {
+    margin: 0 auto;
+    width: 70%;
+    max-width: 900px;
+    padding: 40px 50px;
+
+    background: rgba(255,255,255,0.55);
+    border-radius: 22px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.4);
+
+    font-size: 20px;
+    line-height: 1.8;
+    color: #000;
+}
+
+/* Social links horizontal */
+.contact-socials {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.contact-socials li a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 10px 18px;
+
+    background: rgba(255,255,255,0.4);
+    border: 1px solid rgba(255,255,255,0.5);
+    backdrop-filter: blur(8px);
+
+    border-radius: 12px;
+    color: #000;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    transition: .3s ease;
+}
+
+.contact-socials li a:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+    opacity: .9;
+}
