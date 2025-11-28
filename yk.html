@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f9fc;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #1e88e5;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 10px 0;
+    }
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .navbar a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Sections */
+    section {
+      padding: 50px 20px;
+      max-width: 900px;
+      margin: 30px auto;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      margin-bottom: 15px;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    /* Contact */
+    #contactme ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    #contactme a {
+      text-decoration: none;
+      color: #1e88e5;
+      font-weight: 600;
+    }
+      img { border-radius: 15px; }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#aboutme">About Me</a></li>
+      <li><a href="#portofolio">Portofolio</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contactme">Contact Me</a></li>
+    </ul>
+  </div>
+
+  <section id="home">
+    <h1>Welcome to My Portfolio</h1>
+    <p>My name is Rafi Aditya Aka RapliVX In Github</p>
+    <img src="photo_2025-11-08_18-29-47.jpg" alt="Placeholder" width="300">
+  </section>
+
+  <section id="aboutme">
+    <h2>About Me</h2>
+    <p>I am a web developer with a passion for clean and functional design.</p>
+    <p>I am Weebs And I USE ARCH BTW</p>
+    <p>Evernight is so beautiful BTW</p>
+  </section>
+
+  <section id="portofolio">
+    <h2>Project</h2>
+    <ul style="text-align:left; max-width:400px; margin:auto;">
+      <li>Website for a local business</li>
+      <li>Android Kernel Developer</li>
+      <li>Personal blog</li>
+      <li>HyperOS 3 Port For MiAtoll (Project Amphoreus)</li>
+    </ul>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <img src="image/images.jpg" alt="Image 1">
+      <img src="image/ado.jpg" alt="Image 2">
+      <img src="image/tomori-kusunoki-5be9934fe28c7p.jpg" alt="Image 3">
+      <img src="image/yoko-hikasa-5b4c024a72510p.jpg" alt="Image 4">
+    </div>
+  </section>
+
+  <section id="contactme">
+    <h2>Contact Me</h2>
+    <p>Email: womgirenhjembuten320@gmail.co,</p>
+    <p>Phone: +62 812-XXX-XXXX</p>
+    <p>Address: NGAWI</p>
+    <ul>
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">Twitter</a></li>
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="https://github.com/RapliVx">Github</a></li>
+    </ul>
+  </section>
+</body>
+</html>
