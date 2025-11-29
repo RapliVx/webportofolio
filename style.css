@@ -3,6 +3,14 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    transition: background .25s ease, color .25s ease, border-color .25s ease;
+}
+
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --nav-text-color: #ffffff;
+    --nav-icon-filter: brightness(0) invert(1);
 }
 
 html{
@@ -10,14 +18,16 @@ html{
 }
 
 body{
-    background: #000;
-    overflow-x: hidden;
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background .25s ease, color .25s ease;
     cursor: none !important;
 }
 
-a:hover, button:hover, [role="button"]:hover, input:hover, textarea:hover {
+a:hover, button:hover, [role="button"]:hover, input:hover, textarea:hover, select:hover, .hamburger-box:hover, .music-toggle-btn:hover {
     cursor: none !important;
 }
+
 
 /* Animated GIF cursor */
 .cursor-gif {
@@ -29,7 +39,7 @@ a:hover, button:hover, [role="button"]:hover, input:hover, textarea:hover {
     background: url('image/curcyrene.gif') no-repeat center / contain;
     
     transform: translate(-50%, -50%);
-    z-index: 9999;
+    z-index: 9999999999;
 
     /* smooth follow */
     transition: transform .05s linear;
@@ -461,70 +471,330 @@ video.bg-video{
     opacity: .9;
 }
 
-/* ===== MOBILE BOX BLUR FULL CENTER (≤ 480px) ===== */
-@media (max-width: 480px) {
+/* NAVBAR WRAPPER */
+.nav {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 99999;
+}
 
-    /* HERO BLUR BOX */
-    .hero .content {
-        width: 95%;                 /* hampir full screen */
-        min-height: 65vh;           /* box besar sampai tengah */
-        padding: 30px 24px;         /* padding agak besar */
+/* HAMBURGER BOX */
+.hamburger-box {
+    height: 45px;
+    width: 45px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(12px);
+    border-radius: 14px;
 
-        margin: 0 auto;
-        text-align: center;
+    display: flex;
+    align-items: center;         /* icon + text rata tengah vertical */
+    justify-content: flex-start;
 
-        background: rgba(255,255,255,0.22);
-        backdrop-filter: blur(22px);        /* blur jauh lebih besar */
-        -webkit-backdrop-filter: blur(22px);
+    padding-left: 14px;
+    padding-right: 14px;
+    cursor: pointer;
 
-        border-radius: 35px;        /* curve besar */
-        box-shadow: 0 8px 35px rgba(0,0,0,0.15);
+    position: relative;
+    transition: width .35s ease;
+    overflow: hidden;
+}
+
+/* Hover expand */
+.hamburger-box:hover {
+    width: 160px;
+}
+
+/* TEXT MENU (NEW ANIMATION + CENTERED) */
+.menu-text {
+    margin-left: 12px;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1;
+
+    opacity: 0;
+    white-space: nowrap;
+
+    color: var(--nav-text-color);
+
+    /* ANIMATION */
+    transform: translateX(12px) scale(0.95);
+    transition: opacity .35s ease, transform .35s ease;
+    will-change: transform, opacity;
+}
+
+/* Saat muncul */
+.hamburger-box:hover .menu-text {
+    opacity: 1;
+    transform: translateX(0px) scale(1);
+}
+
+/* Expand saat active (clicked) */
+.hamburger-box.active {
+    width: 160px;
+}
+
+/* Text juga muncul saat active */
+.hamburger-box.active .menu-text {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+/* ICON */
+.icon-svg img {
+    width: 22px;
+    height: 22px;
+    pointer-events: none;
+    display: block;
+    filter: var(--nav-icon-filter);
+}
+
+/* DROPDOWN */
+.dropdown {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 160px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(16px);
+    border-radius: 14px;
+    list-style: none;
+    padding: 10px 0;
+    display: none;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    z-index: 999999;
+    pointer-events: auto;
+}
+
+/* Animasi Masuk */
+.dropdown.active {
+    display: block;
+    animation: dropdownSlideIn 0.3s ease-out forwards;
+}
+
+/* Animasi Keluar */
+.dropdown.hiding {
+    animation: dropdownSlideOut 0.25s ease-in forwards;
+}
+
+/* Versi dengan animasi backdrop blur */
+@keyframes dropdownSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-15px) scale(0.95);
+        backdrop-filter: blur(0px);
     }
-
-    /* PROFILE PIC */
-    .profile-picture {
-        width: 95px;
-        height: 95px;
-        margin-bottom: 20px;
-        border-width: 3px;
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        backdrop-filter: blur(16px);
     }
+}
 
-    /* TEXT SCALE */
-    .hero h1 {
-        font-size: 28px;
-        line-height: 1.25;
+@keyframes dropdownSlideOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        backdrop-filter: blur(16px);
     }
+    100% {
+        opacity: 0;
+        transform: translateY(-15px) scale(0.95);
+        backdrop-filter: blur(0px);
+    }
+}
 
-    .hero p {
-        font-size: 15px;
-        line-height: 1.45;
-        opacity: 0.9;
-        margin-top: 6px;
-    }
+/* LINKS */
+.dropdown li a {
+    display: block;
+    padding: 10px 18px;
+    color: #000;
+    text-decoration: none;
+    transition: .2s ease;
+    color: var(--nav-text-color);
+}
 
-    /* "About me" text */
-    .hero h3 {
-        font-size: 20px;
-        margin-top: 25px;
-    }
+.dropdown li a:hover {
+    background: rgba(255,255,255,0.45);
+}
 
-    .hero .about-text {
-        font-size: 15px;
-        line-height: 1.45;
-        margin-top: 10px;
-    }
+/* LINKS */
+.dropdown li a {
+    display: block;
+    padding: 10px 18px;
+    color: #000;
+    text-decoration: none;
+    transition: .2s ease;
+    color: var(--nav-text-color);
+}
 
-    /* SCROLL BUTTON */
-    .more-btn {
-        bottom: 40px;
-        background: rgba(255,255,255,0.25);
-        backdrop-filter: blur(14px);
-        width: 60px;
-        height: 60px;
-    }
+.dropdown li a:hover {
+    background: rgba(255,255,255,0.45);
+}
 
-    .more-btn .icon-down {
-        width: 26px;
-        height: 26px;
+/* TOGGLE BUTTON (KANAN BAWAH) */
+.music-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;   /* <-- pindah ke kanan */
+
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(12px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    z-index: 99999;
+
+    transition: .25s ease;
+}
+
+/* ICON MUSIC HITAM */
+.music-toggle-btn img {
+    width: 24px;
+    height: 24px;
+    filter: invert(0) brightness(0) saturate(100%);
+    pointer-events: none;
+}
+
+/* FLOATING MUSIC PLAYER (KANAN BAWAH) */
+.music-floating {
+    position: fixed;
+    bottom: 80px;   /* di atas tombol toggle */
+    right: 20px;    /* <-- pindah ke kanan */
+
+    width: 250px;
+    padding: 15px 18px;
+
+    background: rgba(255,255,255,0.23);
+    backdrop-filter: blur(18px);
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+
+    transition: .25s ease;
+    z-index: 99999;
+}
+
+/* Aktif */
+.music-floating.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.music-floating h3 {
+    margin-bottom: 12px;
+    font-size: 17px;
+    color: #000;
+}
+
+.music-floating button {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 12px;
+
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+}
+
+.music-floating input[type="range"] {
+    width: 100%;
+}
+
+/* HEADER DALAM PLAYER */
+.music-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+/* COVER MUSIC */
+.music-cover {
+    width: 55px;
+    height: 55px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* BOX UNTUK RUNNING TEXT */
+.music-title-box {
+    width: 150px;          /* panjang area teks */
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+/* TEKS BERJALAN */
+.music-title {
+    display: inline-block;
+    padding-left: 100%; /* mulai dari luar kanan */
+    animation: scroll-title 9s linear infinite;
+    font-size: 14px;
+    color: #000;
+}
+
+/* Buat ikon musik selalu hitam */
+#music-play #music-icon {
+    filter: brightness(0); /* ubah semua warna jadi hitam */
+    transition: filter 0.2s; /* efek transisi halus */
+}
+
+/* Opsional: sedikit berubah saat hover tombol */
+#music-play:hover #music-icon {
+    filter: brightness(0.3); /* ikon sedikit terang saat hover */
+}
+
+
+/* ANIMASI MARQUEE */
+@keyframes scroll-title {
+    0% {
+        transform: translateX(0);
     }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Play button icon */
+.play-btn {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 12px;
+
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Progress bar */
+.progress-bar {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+#music-icon {
+    filter: brightness(0);
+    transition: filter 0.2s;
+}
+
+#music-play:hover #music-icon {
+    filter: brightness(0.5); /* sedikit terang saat hover */
 }
